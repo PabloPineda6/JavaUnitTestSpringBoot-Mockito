@@ -13,7 +13,9 @@ https://github.com/mockito/mockito/wiki/FAQ
 ### If you are using Intellij or Java 9 or facing a ClassNotFoundException, here's the Quick Start with Top 10 FAQ
 https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minutes-TroubleshootingGuide-And-FAQ/quick-start.md
 
-## To run the services:
-1. Run UnitTestingApplication as with Java (it should launch using Sprint)
-2. Type, in a browser, the route to be accessed, as named in the controller (http://localhost:8080/get-response)
-3. Verify the response matches the expectations
+## To launch an API request and/or check the Data Base:
+1. Run UnitTestingApplication file (src/main/java/com.unittestingproject.unittesting) with Java (it should launch using Sprint)
+2. Type, in a browser, the route of the request, as named in the controller (http://localhost:8080/get-response or http://localhost:8080/item-from-business-service)
+3. Type, in a browser, the route to the local Data Base (http://localhost:8080/h2-console)
+   1. make sure the JDBC URL is <jdbc:h2:mem:testdb> (as defined in application.properties file) and click connect
+4. Verify the response matches the expectations
