@@ -20,6 +20,19 @@ https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minut
    1. make sure the JDBC URL is <jdbc:h2:mem:testdb> (as defined in application.properties file) and click connect
 4. Verify the response matches the expectations
 
-## SPECIAL CONSIDERATIONS DEPENDING ON EACH PROJECT
-#### 1. In this application, we are using an in-memory Data Base as the projects DB, in real world applications, you'll be talking to real DB
-In those situations, move data.sql to the route src/test/resources, and then, that data will be used only for Unit tests (Spring Boot DataJpaTest initializes the DB using that file)
+### SPECIAL CONSIDERATIONS DEPENDING ON EACH PROJECT
+1. In this application, we are using an in-memory Data Base as the projects DB, in real world applications, you'll be talking to real DB.
+In those situations, move data.sql to the route src/test/resources, and then, that data will be used only for Unit tests (Spring Boot DataJpaTest initializes the DB using that file).
+
+2. Use @MockBean to mock dependencies outside the Integration test you want to do
+and have them return whatever works for the test you want to do.
+For example:
+@MockBean
+private ItemRepository repository;
+3. If you have a src/test/resources/application.properties file. When making tests, whatever is written there overwrites what is in the
+   src/main/resources/application.properties file. This last file would manage the properties for the application's regular behaviour.
+If you don't have the first uppermentioned file. The second one would manage the properties for both the regular behaviour and the tests.
+4. If you need a specific configuration for a given test: Right above the definition of the class, you can use the @TestPropertySource annotation.
+For example: @TestPropertySource(locations = {"classpath:test-configuration.properties"})
+// <you need to create the test-configuration.properties file in src/test/resources/test-configuration.properties>
+5. 
