@@ -1,7 +1,7 @@
 # Master Java Unit Testing with Spring Boot & Mockito
 Learn to write awesome Java JUnit unit tests with Spring Boot, Mockito, JsonAssert, Hamcrest & JsonPath in 40 easy steps
 
-### Project created by following the course: 
+### Project created while taking the course: 
 https://www.udemy.com/course/learn-unit-testing-with-spring-boot/
 
 ### Reference URLs, code repository and course updates;
@@ -19,3 +19,7 @@ https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minut
 3. Type, in a browser, the route to the local Data Base (http://localhost:8080/h2-console)
    1. make sure the JDBC URL is <jdbc:h2:mem:testdb> (as defined in application.properties file) and click connect
 4. Verify the response matches the expectations
+
+## SPECIAL CONSIDERATIONS DEPENDING ON EACH PROJECT
+#### 1. In this application, we are using an in-memory Data Base as the projects DB, in real world applications, you'll be talking to real DB
+In those situations, move data.sql to the route src/test/resources, and then, that data will be used only for Unit tests (Spring Boot DataJpaTest initializes the DB using that file)

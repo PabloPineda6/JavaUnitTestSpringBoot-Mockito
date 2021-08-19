@@ -14,6 +14,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Arrays;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -52,6 +54,30 @@ public class ItemControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"id\":2,\"name\":\"Cube\",\"price\":10,\"quantity\":10}"))
                 .andExpect(content().json("{\"id\":    2,\"name\":\"Cube\",\"price\":10}"))
+                .andReturn();
+
+        // Assertion not needed, already done using the .andExpect matcher statements
+    }
+
+    @Test
+    public void retrieveAllItems_basic() throws Exception {
+        when(businessService.retrieveAllItems()).thenReturn(
+                Arrays.asList(new Item(2, "Cube", 10, 10),
+                              new Item(3, "pyramid", 8, 12),
+                              new Item(4, "Tetrahedron", 9, 20))
+        );
+        RequestBuilder request = MockMvcRequestBuilders
+                .get("/all-items-from-database")
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        "[{\"id\":2,\"name\":\"Cube\",\"price\":10,\"quantity\":10,\"value\":0},"
+                                     +"{\"id\":3,\"name\":\"pyramid\",\"price\":8,\"quantity\":12,\"value\":0},"
+                                     +"{\"id\":4,\"name\":\"Tetrahedron\",\"price\":9,\"quantity\":20,\"value\":0}]"))
+                .andExpect(content().json("[{\"id\":    2,\"name\":\"Cube\",\"price\":10},"
+                                                    +"{\"id\":3,\"name\":\"pyramid\",\"quantity\":12,\"value\":0},"
+                                                    +"{}]"))
                 .andReturn();
 
         // Assertion not needed, already done using the .andExpect matcher statements

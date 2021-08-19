@@ -8,13 +8,15 @@ import javax.persistence.Transient;
 public class Item {
 
     @Id
-    private final int id;
-    private final String name;
-    private final int price;
-    private final int quantity;
+    private int id;
+    private String name;
+    private int price;
+    private int quantity;
 
     @Transient
     private int value;
+
+    protected Item(){}
 
     public Item(int id, String name, int price, int quantity) {
         this.id = id;
