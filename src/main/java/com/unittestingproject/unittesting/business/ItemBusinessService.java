@@ -24,4 +24,8 @@ public class ItemBusinessService {
         }
         return items;
     }
+
+    public Item postItem() {
+        return new Item(1, "ball", 10, 100);
+    }
 }
