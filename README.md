@@ -69,8 +69,13 @@ For example:
 private ItemRepository repository;
 3. If you have a src/test/resources/application.properties file. When making tests, whatever is written there overwrites what is in the
    src/main/resources/application.properties file. This last file would manage the properties for the application's regular behaviour.
-If you don't have the first uppermentioned file. The second one would manage the properties for both the regular behaviour and the tests.
+If you don't have the first upper-mentioned file. The second one would manage the properties for both the regular behaviour and the tests.
 4. If you need a specific configuration for a given test: Right above the definition of the class, you can use the @TestPropertySource annotation.
 For example: @TestPropertySource(locations = {"classpath:test-configuration.properties"})
 // <you need to create the test-configuration.properties file in src/test/resources/test-configuration.properties>
 
+## Characteristics of a good unit test:
+1. READABLE: One look at the test, and you know what's being tested (organize your code and make it very readable)
+2. FAST: What happens if unit tests take a long time to run? (Unit tests' value is realized only when they are run frequently, they can't be slow)
+3. ISOLATED: Fails only when there is an issue with the code (your test should never depend on external things)
+4. RUN OFTEN: Make the best use of your unit tests (The importance of unit test is they assure quality on every commit and every code change)
