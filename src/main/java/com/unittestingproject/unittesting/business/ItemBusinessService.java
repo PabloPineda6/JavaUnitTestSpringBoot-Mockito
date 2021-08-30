@@ -24,4 +24,8 @@ public class ItemBusinessService {
         }
         return items;
     }
+
+    public int add (int a, int b) {
+        return a+b;
+    }
 }

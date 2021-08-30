@@ -10,6 +10,10 @@ https://github.com/in28minutes/spring-unit-testing-with-junit-and-mockito
 ### For a Mockito FAQ, visit:
 https://github.com/mockito/mockito/wiki/FAQ
 
+### To help you unit test different patterns like Data Bases, internal interfaces, Mocks, refactoring Test code, etc.
+http://xunitpatterns.com/
+
+
 ### If you are using Intellij or Java 9 or facing a ClassNotFoundException, here's the Quick Start with Top 10 FAQ
 https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minutes-TroubleshootingGuide-And-FAQ/quick-start.md
 
@@ -19,6 +23,40 @@ https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minut
 3. Type, in a browser, the route to the local Data Base (http://localhost:8080/h2-console)
    1. make sure the JDBC URL is <jdbc:h2:mem:testdb> (as defined in application.properties file) and click connect
 4. Verify the response matches the expectations
+
+
+### BETTER ASSERTIONS
+
+There are three frameworks to improve the level of assertions in a test: Hamcrest methods, Json assert (AssertJ) and Json path
+
+1. To use the hamcrest library, you need to have these settings in your static preferences
+
+In Eclipse: Go to preferences -> Static -> Favorites. Then add (in New Type):
+- org.hamcrest.CoreMatchers (should already be there)
+- org.hamcrest.MatcherAssert
+- org.hamcrest.Matchers
+
+In Intellij: Go to File -> Settings -> Code Style -> Java -> Imports. Then, add (and select static):
+- org.hamcrest.CoreMatchers
+- org.hamcrest.MatcherAssert
+- org.hamcrest.Matchers
+
+Then, where you create your assertions, you would want to import:
+- import static org.hamcrest.MatcherAssert.*;
+- import static org.hamcrest.Matchers.*;
+
+2. To use Json assert (AssertJ), you need to have these settings in your static preferences
+
+In Eclipse: Go to preferences -> Static -> Favorites. Then add (in New Type):
+- org.assertj.core.api.Assertions (should already be there)
+
+In Intellij: Go to File -> Settings -> Code Style -> Java -> Imports. Then, add (and select static):
+- org.assertj.core.api.Assertions (should already be there)
+
+Then, where you create your assertions, you would want to import:
+- import static org.assertj.core.api.Assertions.assertThat;
+
+
 
 ### SPECIAL CONSIDERATIONS DEPENDING ON EACH PROJECT
 1. In this application, we are using an in-memory Data Base as the projects DB, in real world applications, you'll be talking to real DB.
@@ -35,4 +73,4 @@ If you don't have the first uppermentioned file. The second one would manage the
 4. If you need a specific configuration for a given test: Right above the definition of the class, you can use the @TestPropertySource annotation.
 For example: @TestPropertySource(locations = {"classpath:test-configuration.properties"})
 // <you need to create the test-configuration.properties file in src/test/resources/test-configuration.properties>
-5. 
+
